@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultimate Valentine Pro ❤️</title>
+
+<style>
+body{
+text-align:center;
+font-family:Arial;
+background:#ffe6f0;
+margin-top:120px;
+overflow:hidden;
+}
+
+button{
+padding:14px 28px;
+font-size:22px;
+margin:10px;
+border:none;
+border-radius:14px;
+cursor:pointer;
+transition:0.3s;
+position:relative;
+}
+
+#yesBtn{
+background:green;
+color:white;
+animation:bounce 1s infinite alternate;
+}
+
+#noBtn{background:red;color:white;}
+
+@keyframes bounce{
+from{transform:scale(1);}
+to{transform:scale(1.1);}
+}
+
+.heart{
+position:fixed;
+top:-20px;
+font-size:24px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(0);}
+100%{transform:translateY(100vh);}
+}
+
+.ring{
+font-size:80px;
+animation:pop 0.6s ease;
+}
+
+@keyframes pop{
+from{transform:scale(0);}
+to{transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="title">SAPNA will you be my Valentine? ❤️</h1>
+
+<button id="yesBtn" onclick="yesClick()">YES 😍</button>
+<button id="noBtn" onclick="noClick()">NO 😢</button>
+
+<h2 id="msg"></h2>
+
+<audio id="music" loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+let yesSize=22;
+
+let noTexts=[
+"pakka? 😢",
+"sachme reject? 💔",
+"soch lo 😭",
+"last chance 😩",
+"mat karo yaar 🥺"
+];
+
+let i=0;
+
+function yesClick(){
+
+document.getElementById("music").play();
+
+document.body.innerHTML=
+"<div class='ring'>💍</div>\
+<h1 style='font-size:65px'>She said YES 😍❤️</h1>\
+<h2>You made my day! ❤️ Happy Valentine's Day 🌹</h2>";
+
+setInterval(createHeart,250);
+}
+
+function noClick(){
+
+yesSize+=20;
+document.getElementById("yesBtn").style.fontSize=yesSize+"px";
+
+let x=Math.random()*250-125;
+let y=Math.random()*250-125;
+
+document.getElementById("noBtn").style.transform=
+"translate("+x+"px,"+y+"px)";
+
+if(i<noTexts.length){
+document.getElementById("noBtn").innerText=noTexts[i];
+i++;
+}else{
+
+document.getElementById("msg").innerText=
+"Ab bas 😭❤️ YES hi option hai 😍";
+
+document.getElementById("noBtn").style.display="none";
+
+document.getElementById("yesBtn").style.fontSize="70px";
+}
+}
+
+function createHeart(){
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerText="❤️";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},5000);
+}
+
+</script>
+
+</body>
+</html>
